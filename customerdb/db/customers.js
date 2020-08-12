@@ -65,6 +65,15 @@ const deleteCustomer = (req, res) => {
     res.status(204).end();
   }
 
+  // Delete all customers
+const deleteAllCustomers = () => {
+  db.query('DELETE FROM customers', (err, res) => {
+    if (err) {
+      return console.error('Error executing query', err.stack)
+    }
+  })
+}
+
   // Update customer
 const updateCustomer = (req, res) => {
     // Extract edited customer from the request body
@@ -89,5 +98,6 @@ module.exports = {
   getCustomerById: getCustomerById,
   addCustomer: addCustomer,
   deleteCustomer: deleteCustomer,
-  updateCustomer: updateCustomer
+  updateCustomer: updateCustomer,
+  deleteAllCustomers: deleteAllCustomers
 }

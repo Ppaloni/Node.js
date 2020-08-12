@@ -65,6 +65,15 @@ const deleteMovie = (req, res) => {
     res.status(204).end();
   }
 
+  // Delete all movies
+const deleteAllMovies = () => {
+  db.query('DELETE FROM movies', (err, res) => {
+    if (err) {
+      return console.error('Error executing query', err.stack)
+    }
+  })
+}
+
   // Update movie
 const updateMovie = (req, res) => {
     // Extract edited movie from the request body
@@ -89,5 +98,6 @@ module.exports = {
   getMovieById: getMovieById,
   addMovie: addMovie,
   deleteMovie: deleteMovie,
-  updateMovie: updateMovie
+  updateMovie: updateMovie,
+  deleteAllMovies: deleteAllMovies
 }
